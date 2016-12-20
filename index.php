@@ -1,6 +1,14 @@
 <?php
 session_start();
-
+    $passAdmin = "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8";
+    $passMarie = "f6889fc97e14b42dec11a8c183ea791c5465b658";
+    $login = isset($_POST["login"])?$_POST["login"]:"";
+    $pass = isset($_POST["password"])?sha1($_POST["password"]):"";
+    
+    if ((($login == "Marie") && ($pass == $passMarie)) || ($login == "Admin") && ($pass == $passAdmin)) {
+        $_SESSION["login"] = $login;
+        $_SESSION["password"] = $pass;
+    }
 ?>
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <!--
@@ -38,9 +46,9 @@ Released for free under a Creative Commons Attribution 2.5 License
                             <fieldset>
                                 <legend>Connexion</legend>
                                 <label for="inputtext1">Identifiant</label>
-                                <input id="inputtext1" type="text" name="inputtext1" value="" />
+                                <input id="inputtext1" type="text" name="login" value="" />
                                 <label for="inputtext2">Mot de passe</label>
-                                <input id="inputtext2" type="password" name="inputtext2" value="" />
+                                <input id="inputtext2" type="password" name="password" value="" />
                                 <input id="inputsubmit1" type="submit" name="inputsubmit1" value="Connexion" />
                                 <p><a href="#">Mot de passe oublié ?</a></p>
                             </fieldset>
@@ -64,7 +72,7 @@ Released for free under a Creative Commons Attribution 2.5 License
                     <p><img src="img/img06.jpg" alt="paysage" class="portrait" /></p>
                     <h2 class="title">Développement durable</h2>
                     <div class="story">
-                        <h3>L’éducation au développement durable (EDD), c’est...</h3>
+                        <h3>L’éducation au développement durable (EDD), c’est... </h3>
                         <ul>
 
                             <li>une question de valeurs ayant pour centre la notion de respect, comme le stipule le texte de l’UNESCO sur la Décennie de l’EDD : <blockquote><p>&#171; Respect des autres, qu’ils appartiennent aux générations actuelles ou futures, respect de la différence et de la diversité, de l’environnement, des ressources de la planète que nous habitons. &#187;</p></blockquote></li>
