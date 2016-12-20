@@ -1,8 +1,35 @@
+<!-
+- mot de passe Admin : 8451ba8a14d79753d34cb33b51ba46b4b025eb81(super)
+- mot de passe Marie : 0ee1430589353bb64ad9ef983b9e6cd15ba6c177(ballon)
+-->
 <?php
 session_start();
 
+$MessageErreurCo = "";
+
+$AdminPass = "8451ba8a14d79753d34cb33b51ba46b4b025eb81";
+$MariePass = "0ee1430589353bb64ad9ef983b9e6cd15ba6c177";
+$_SESSION["AdminPass"] = $AdminPass;
+$_SESSION["MariePass"] = $MariePass;
+
+$login = isset($_POST["login"])?$_POST["login"]:"";
+$pass = isset($_POST["pass"])?sha1($_POST["pass"]):"";
+
+if($login == "Admin" && $pass = $AdminPass)
+{
+    $MessageErreurCo = "<p><a style='color: green'>Authentification réussie !</a></p>";
+}
+elseif ($login == "Marie" && $pass == $MariePass)
+{
+    $MessageErreurCo = "";
+}
+else
+{
+    $MessageErreurCo = "<p><a style='color: red'>Erreur d'authentification !</a></p>";
+}
+
 ?>
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <!--
 Design by Free CSS Templates
 http://www.freecsstemplates.org
@@ -38,11 +65,12 @@ Released for free under a Creative Commons Attribution 2.5 License
 					<fieldset>
 					<legend>Connexion</legend>
 					<label for="inputtext1">Identifiant</label>
-					<input id="inputtext1" type="text" name="inputtext1" value="" />
+					<input id="inputtext1" type="text" name="login" value="" />
 					<label for="inputtext2">Mot de passe</label>
-					<input id="inputtext2" type="password" name="inputtext2" value="" />
-					<input id="inputsubmit1" type="submit" name="inputsubmit1" value="Connexion" />
+					<input id="inputtext2" type="password" name="pass" value="" />
+					<input id="inputsubmit1" type="submit" name="submit" value="Connexion" />
 					<p><a href="#">Mot de passe oublié ?</a></p>
+                                        <?php echo $MessageErreurCo; ?>
 					</fieldset>
 				</form>
 			</div>
